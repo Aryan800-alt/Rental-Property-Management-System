@@ -1,0 +1,24 @@
+{
+  "name": "flatfinder",
+  "version": "1.0.0",
+  "description": "FlatFinder — Rental Flat Management Platform",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.9.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Primary Meta -->
+    <meta name="description" content="FlatFinder — Find, book, and manage rental flats effortlessly." />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#1d4ed8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FlatFinder" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FlatFinder" />
+    <meta property="og:description" content="Find, book, and manage rental flats effortlessly." />
+    <meta property="og:site_name" content="FlatFinder" />
+
+    <title>FlatFinder</title>
+
+    <!-- Stylesheet — unchanged href to preserve CSS linkage -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav id="app-nav" role="navigation" aria-label="Main navigation"></nav>
+
+    <main id="app-root" role="main" aria-live="polite" aria-atomic="false"></main>
+
+    <div
+      id="app-toast"
+      role="status"
+      aria-live="assertive"
+      aria-atomic="true"
+      aria-relevant="additions text"
+    ></div>
+
+    <div
+      id="app-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dialog"
+      aria-hidden="true"
+    ></div>
+
+    <noscript>
+      <p style="text-align:center;padding:2rem;font-family:sans-serif;">
+        FlatFinder requires JavaScript to run. Please enable it in your browser settings.
+      </p>
+    </noscript>
+
+    <!-- app.js — unchanged src to preserve JS linkage -->
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Primary Meta -->
+    <meta name="description" content="FlatFinder — Admin Portal. Platform management, user oversight, and system configuration." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#dc2626" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FlatFinder Admin" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Open Graph — intentionally minimal for admin portals -->
+    <meta property="og:title" content="FlatFinder — Admin Portal" />
+    <meta property="og:site_name" content="FlatFinder" />
+
+    <title>FlatFinder — Admin</title>
+
+    <!-- Stylesheet — unchanged href to preserve CSS linkage -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav id="app-nav" role="navigation" aria-label="Main navigation"></nav>
+
+    <main id="app-root" role="main" aria-live="polite" aria-atomic="false"></main>
+
+    <div
+      id="app-toast"
+      role="status"
+      aria-live="assertive"
+      aria-atomic="true"
+      aria-relevant="additions text"
+    ></div>
+
+    <div
+      id="app-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dialog"
+      aria-hidden="true"
+    ></div>
+
+    <noscript>
+      <p style="text-align:center;padding:2rem;font-family:sans-serif;">
+        FlatFinder requires JavaScript to run. Please enable it in your browser settings.
+      </p>
+    </noscript>
+
+    <!-- Role hint for app.js — value unchanged -->
+    <script>window.FF_ROLE_HINT = 'admin';</script>
+
+    <!-- app.js — unchanged src to preserve JS linkage -->
+    <script src="app.js"></script>
+  </body>
+</html>
