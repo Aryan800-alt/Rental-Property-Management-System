@@ -6,17 +6,30 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = mysql.createPool({
-  host:               process.env.MYSQLHOST     || process.env.DB_HOST     || 'localhost',
-  port:               parseInt(process.env.MYSQLPORT    || process.env.DB_PORT     || '3306'),
-  user:               process.env.MYSQLUSER     || process.env.DB_USER     || 'root',
-  password:           process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
-  database:           process.env.MYSQLDATABASE || process.env.DB_NAME     || 'flatfinder',
+  host:               process.env.MYSQLHOST                                  // Railway: mysql.railway.internal
+                   || process.env.DB_HOST     || 'localhost',
+
+  port:               parseInt(
+                        process.env.MYSQLPORT                                // Railway: 3306
+                     || process.env.DB_PORT   || '3306'),
+
+  user:               process.env.MYSQLUSER                                  // Railway: root
+                   || process.env.DB_USER     || 'root',
+
+  password:           process.env.MYSQLPASSWORD                              // Railway: primary password var
+                   || process.env.MYSQL_ROOT_PASSWORD                        // Railway: fallback password var
+                   || process.env.DB_PASSWORD || '',
+
+  database:           process.env.MYSQLDATABASE                              // Railway: railway
+                   || process.env.MYSQL_DATABASE                             // Railway: fallback database var
+                   || process.env.DB_NAME     || 'flatfinder',
+
   waitForConnections: true,
   connectionLimit:    10,
   queueLimit:         0,
   timezone:           '+00:00',
   charset:            'utf8mb4',
-  ssl:                { rejectUnauthorized: false },  // Required for Railway; safe for local too
+  ssl:                { rejectUnauthorized: false },                          // Required for Railway; safe for local too
 });
 
 export async function query(sql, params = []) {
