@@ -10,7 +10,7 @@ import jwt          from 'jsonwebtoken';
 import dotenv       from 'dotenv';
 import path         from 'path';
 import { fileURLToPath } from 'url';
-import { query, queryOne } from './db.js';
+import { query, queryOne, validateConnection } from './db.js';
 
 dotenv.config();
 
@@ -32,10 +32,11 @@ const VALID_STATUSES = { booking: ['confirmed', 'cancelled'], listing: ['approve
 // Allows configured origins + any localhost/127.0.0.1 port + file:// (null origin)
 const ALLOWED_ORIGINS   = (process.env.FRONTEND_ORIGIN || 'http://localhost:3000').split(',').map((o) => o.trim());
 const LOCAL_ORIGIN_RE   = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+const RAILWAY_ORIGIN_RE = /^https?:\/\/[\w-]+\.up\.railway\.app$/;
 
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || origin === 'null' || ALLOWED_ORIGINS.includes(origin) || LOCAL_ORIGIN_RE.test(origin))
+    if (!origin || origin === 'null' || ALLOWED_ORIGINS.includes(origin) || LOCAL_ORIGIN_RE.test(origin) || RAILWAY_ORIGIN_RE.test(origin))
       return cb(null, true);
     cb(new Error(`CORS: origin ${origin} not allowed`));
   },
@@ -538,13 +539,7 @@ app.listen(PORT, async () => {
   console.log(`║  🏠  FlatFinder API — http://localhost:${PORT}   ║`);
   console.log(`║  ENV: ${IS_PROD ? 'production ' : 'development'}                        ║`);
   console.log('╚══════════════════════════════════════════════╝');
-  try {
-    await query('SELECT 1');
-    console.log('  ✅  MySQL connected.');
-  } catch (e) {
-    console.error('  ❌  MySQL FAILED:', e.message);
-    console.error('      → Edit .env with correct DB credentials and restart.');
-  }
+  await validateConnection(); // Robust DB check — logs details, exits on failure
   console.log('');
 });
 
