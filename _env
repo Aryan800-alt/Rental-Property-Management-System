@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────
+# FlatFinder — Environment Variables
+#
+# LOCAL DEVELOPMENT  →  copy this file to ".env" and fill in values
+# RAILWAY DEPLOYMENT →  add these as Railway Service Variables
+#                        (Railway MySQL plugin auto-sets the MYSQL* vars)
+# ─────────────────────────────────────────────────────────────────
+
+# ── Server ────────────────────────────────────────────────────────
+PORT=3000
+NODE_ENV=development        # set to "production" on Railway
+
+# ── Database ──────────────────────────────────────────────────────
+# On Railway: add the MySQL plugin to your service.
+# Railway auto-injects these exact variable names from the plugin:
+#   MYSQLHOST  MYSQLPORT  MYSQLUSER  MYSQLPASSWORD  MYSQLDATABASE
+#
+# For local development, set the same names:
+MYSQLHOST=127.0.0.1
+MYSQLPORT=3306
+MYSQLUSER=root
+MYSQLPASSWORD=your_mysql_password_here
+MYSQLDATABASE=flatfinder
+
+# ── JWT ───────────────────────────────────────────────────────────
+# REQUIRED — generate a strong random string (32+ chars) for production.
+# Example:  node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+JWT_SECRET=CHANGE_ME_use_a_long_random_string_here
+
+# ── CORS ──────────────────────────────────────────────────────────
+# Your deployed frontend URL (Railway auto-assigns *.up.railway.app).
+# Comma-separated if you have multiple origins.
+# Leave blank locally (localhost is always allowed).
+FRONTEND_ORIGIN=https://your-app.up.railway.app
+
+# ── Cloudinary ────────────────────────────────────────────────────
+# Get these from https://cloudinary.com/console
+#
+# CLOUDINARY_CLOUD_NAME    → top-left of Cloudinary Dashboard (safe to expose)
+# CLOUDINARY_UPLOAD_PRESET → Settings → Upload → Upload Presets → Unsigned preset name (safe to expose)
+# CLOUDINARY_API_KEY       → API Keys page (SERVER-SIDE ONLY — never expose to browser)
+# CLOUDINARY_API_SECRET    → API Keys page (SERVER-SIDE ONLY — never expose to browser)
+#
+# Cloud name + upload preset are injected into HTML <meta> tags by server.js.
+# API key + secret stay on the server and are used only for image deletion.
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_UPLOAD_PRESET=your_unsigned_preset_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
